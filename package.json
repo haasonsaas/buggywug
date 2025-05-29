@@ -1,0 +1,42 @@
+{
+  "name": "buggywug",
+  "version": "0.1.0",
+  "description": "A local debugging assistant that helps fix errors in your terminal",
+  "type": "module",
+  "bin": {
+    "buggywug": "./bin/buggywug.js"
+  },
+  "scripts": {
+    "dev": "bun run src/cli/index.ts",
+    "build": "bun build src/cli/index.ts --compile --outfile bin/buggywug",
+    "start": "bun run bin/buggywug.js",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "ollama": "^0.5.15",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "debugging",
+    "cli",
+    "terminal",
+    "ai",
+    "ollama",
+    "developer-tools"
+  ],
+  "author": "",
+  "license": "MIT"
+}
