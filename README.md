@@ -35,24 +35,97 @@ bun link
 
 ## Usage
 
-### Debug the last command
+### Debug files and scripts
+
+#### Debug a JavaScript/TypeScript file
+```bash
+buggywug debug node yourfile.js
+buggywug debug bun yourfile.ts
+buggywug debug deno run yourfile.ts
+```
+
+#### Debug Python scripts
+```bash
+buggywug debug python script.py
+buggywug debug python3 app.py --arg1 value
+```
+
+#### Debug shell scripts
+```bash
+buggywug debug bash script.sh
+buggywug debug ./executable-script.sh
+```
+
+### Debug commands
+
+#### Debug the last command you ran
 ```bash
 buggywug debug
 ```
 
-### Debug a specific command
+#### Debug any command
 ```bash
 buggywug debug npm run build
+buggywug debug cargo build --release
+buggywug debug make install
 ```
 
-### List available models
+### Model management
+
+#### List available AI models
 ```bash
 buggywug models
 ```
 
-### Pull a new model
+#### Pull a new model from Ollama
 ```bash
 buggywug pull codellama:latest
+```
+
+#### Use a specific model for debugging
+```bash
+buggywug debug --model codellama:latest node app.js
+```
+
+## Examples
+
+### Example 1: Missing module error
+```bash
+# Your script has: import express from 'express'
+$ buggywug debug node server.js
+
+🐛 Error detected: Module not found
+📝 Suggested fix: Install missing package
+   Run: npm install express
+
+? Which fix would you like to apply? 1
+✓ Fix applied successfully
+✓ Command now runs successfully!
+```
+
+### Example 2: Python syntax error
+```bash
+$ buggywug debug python broken.py
+
+🐛 Error detected: Syntax error
+📝 Suggested fix: Fix missing colon on line 5
+   Change: if x > 10
+   To: if x > 10:
+
+? Which fix would you like to apply? 1
+✓ Fix applied successfully
+```
+
+### Example 3: Permission error
+```bash
+$ buggywug debug ./deploy.sh
+
+🐛 Error detected: Permission denied
+📝 Suggested fix: Make file executable
+   Run: chmod +x ./deploy.sh
+
+? Which fix would you like to apply? 1
+✓ Fix applied successfully
 ```
 
 ## How It Works
